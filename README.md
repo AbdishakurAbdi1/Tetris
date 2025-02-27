@@ -66,12 +66,12 @@ Dette er en **individuell oppgave** som påvirker din endelige karakter. Vi tar 
 ✅ Hjelpe hverandre med feilsøking – men du må **dokumentere** dette i koden  
 ✅ Be om hjelp fra gruppeledere (dette trenger ikke å dokumenteres)  
 ✅ Dele **korte kodeutdrag** i diskusjoner (f.eks. over Discord)  
-✅ Benytte seg av korte kodesnutter fra StackOverflow og lignende nettsider  
+✅ Benytte seg av korte kodesnutter fra StackOverflow og lignende nettsider (må dokumenteres)
 
 
 **Det er *ikke* lov å:**  
-❌ Kopiere kode direkte fra andre studenter 
-❌ Kopiere kode direkte fra KI-verktøy 
+❌ Kopiere kode direkte fra andre studenter  
+❌ Kopiere kode direkte fra KI-verktøy  
 ❌ Dele en hel eller delvis løsning med andre  
 ❌ Gjøre koden din offentlig tilgjengelig før kurset er over (eller helst aldri)  
 
