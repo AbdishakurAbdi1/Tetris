@@ -41,7 +41,7 @@ Vi bygger spillet gradvis. Følg disse stegene i rekkefølge:
 ---
 
 ## **📊 Vurderingskriterier**  
-Denne semesteroppgaven gi 15% av din endelige karakter. Oppgaven må godkjennes for å kunne fortsette i emnet og ta eksamen.
+Denne semesteroppgaven gi 15% av din endelige karakter. Oppgaven rettes av gruppeledere og må godkjennes for å kunne fortsette i emnet og ta eksamen.
 Dette gjøres ved å oppnå 40% av total poengsum, altså **minst 6 av 15 poeng**.
 
 | **Kategori**          | **Poeng** | **Hva vurderes?** |
