@@ -80,4 +80,4 @@ public class Grid implements IGrid {
         return isWithinRowBound && isWithinColBound;
     }
     
-}
+} //dette er bare en test for å se om det er comitted riktig.

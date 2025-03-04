@@ -1,3 +1,4 @@
+//-Spesifiserer hvilke metoder TetrisView har tilgang til
 package no.uib.inf101.tetris.view;
 
 import no.uib.inf101.grid.GridCell;

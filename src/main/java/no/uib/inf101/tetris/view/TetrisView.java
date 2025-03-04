@@ -1,3 +1,4 @@
+//- Tegne brettet og Tegne den fallende brikken over brettet.
 package no.uib.inf101.tetris.view;
 
 import javax.swing.JPanel;
