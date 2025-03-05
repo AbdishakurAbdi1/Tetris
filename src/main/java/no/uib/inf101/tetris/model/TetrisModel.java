@@ -29,5 +29,5 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
     public Iterable<GridCell> getTilesOnBoard() {
         return board; //Siden board allerede er Iterable<GridCell>, kan vi returnere det direkte
     }
-    
+
 }
