@@ -4,6 +4,8 @@ import no.uib.inf101.grid.CellPosition;
 import no.uib.inf101.grid.GridCell;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.List;
 import java.util.Iterator;
 
@@ -90,6 +92,30 @@ public class Tetromino implements Iterable<GridCell> {
     }
 
     /**
+     * Retunerer posisjonen av Tetromino.
+     * @return Posisjonen.
+     */
+    public CellPosition getPosition() {
+        return position;
+    }
+
+    /**
+     * Retunerer symbolet av Tetromino.
+     * @return Symbolet.
+     */
+    public char getSymbol() {
+        return symbol;
+    }
+
+    /**
+     * Retunerer fasongen av Tetromino.
+     * @return Fasongen.
+     */
+    public boolean[][] getShape() {
+        return shape;
+    }
+
+    /**
      * Flytter Tetrominoen til en ny posisjon.
      * @param deltaRow Antall rader å flytte.
      * @param deltaCol Antall kolonne å flytte.
@@ -133,6 +159,36 @@ public class Tetromino implements Iterable<GridCell> {
         }
         return cells.iterator();
     }
+
+
+    /**
+     * Sammenligner denne Tetrominoen med et annet objekt.
+     * to Tetrominoer regnes som like hvis de har samme symbol og samme fasong.
+     * @param obj Objketet som skal sammenlignes, den er av typen Objekt.
+     * @return {@code true} hvis objektet er en Teromino med samme symbol/fasong.
+     */
+    @Override
+    public boolean equals(Object obj){
+        if (this==obj){
+            return true;
+            }
+        if (!(obj instanceof Tetromino other)){
+            return false;
+            }
+        return symbol == other.symbol && Arrays.deepEquals(shape, other.shape);
+    }
+
+    /**
+     * Beregner hash koden for denne Tetrominoen.
+     * Hash koden er basert på symbolet og fasongen, slik at like tetrominoer for samme hash kode.
+     * @return En integer verdi som representerer hash koden til Tetrominoen.
+     */
+    @Override
+    public int hashCode(){
+        return Objects.hash(symbol, Arrays.deepHashCode(shape));
+    }
+    
+
 
     
 }
