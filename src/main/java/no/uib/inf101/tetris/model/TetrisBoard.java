@@ -3,6 +3,7 @@ package no.uib.inf101.tetris.model;
 
 import no.uib.inf101.grid.CellPosition;
 import no.uib.inf101.grid.Grid;
+import no.uib.inf101.grid.GridDimension;
 
 
 /**
@@ -46,4 +47,7 @@ public class TetrisBoard extends Grid{
         return sb.toString(); // Konverterer StringBuilder objketet til en vanlig String objekt og retunerer det
     }
 
+    public GridDimension getDimension() {
+        return this; // Returnerer seg selv fordi det implementerer GridDimension
+    }
 }

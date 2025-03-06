@@ -1,4 +1,4 @@
-package no.uib.inf101.grid;
+package no.uib.inf101.grid.tetris;
 
 import no.uib.inf101.grid.GridCell;
 import no.uib.inf101.grid.CellPosition;

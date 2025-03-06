@@ -1,4 +1,4 @@
-package no.uib.inf101.grid;
+package no.uib.inf101.grid.tetris;
 
 import no.uib.inf101.tetris.model.tetromino.RandomTetrominoFactory;
 import no.uib.inf101.tetris.model.tetromino.TetrominoFactory;
@@ -6,9 +6,8 @@ import no.uib.inf101.tetris.model.tetromino.TetrominoFactory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
-import no.uib.inf101.tetris.model.Tetromino;
+import no.uib.inf101.tetris.model.tetromino.*;
 
-import java.util.HashSet;
 import java.util.Set;
 
 public class TestRandomTetrominoFactory{

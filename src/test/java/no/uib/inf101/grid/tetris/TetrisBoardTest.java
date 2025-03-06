@@ -1,4 +1,4 @@
-package no.uib.inf101.grid;
+package no.uib.inf101.grid.tetris;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import no.uib.inf101.tetris.model.TetrisBoard;

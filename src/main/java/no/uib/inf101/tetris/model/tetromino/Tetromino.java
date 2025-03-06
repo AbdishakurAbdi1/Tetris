@@ -153,6 +153,7 @@ public class Tetromino implements Iterable<GridCell> {
             for (int c = 0; c < shape[r].length; c++) {
                 if (shape[r][c]) {  // Kun celler som er en del av brikken
                     CellPosition pos = new CellPosition(position.row() + r, position.col() + c);
+                    System.out.println("Adding cell: " + cells);
                     cells.add(new GridCell(pos, symbol));
                 }
             }

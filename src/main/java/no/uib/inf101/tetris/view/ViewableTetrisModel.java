@@ -21,4 +21,11 @@ public interface ViewableTetrisModel {
      */
     Iterable<GridCell> getTilesOnBoard();
 
+    /**
+     * Returns an iterable object containing all the cells of the falling tetromino.
+     *
+     * @return an iterable object with the falling tetromino's cells
+     */
+    Iterable<GridCell> getFallingTetrominoCells();
+
 }

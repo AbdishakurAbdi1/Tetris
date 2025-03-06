@@ -50,7 +50,10 @@ public class TetrisView extends JPanel {
         CellPositionToPixelConverter converter = new CellPositionToPixelConverter(box,
                 viewableTetrisModel.getDimension(), CELLMARGIN);
 
+        //Tegner brettet
         drawCells(g2, viewableTetrisModel.getTilesOnBoard(), converter, colorTheme);
+        //Tegner den fallende brillen
+        drawCells(g2,viewableTetrisModel.getFallingTetrominoCells(),converter,colorTheme);
     }
 
     private static void drawCells(Graphics2D g2, Iterable<GridCell> iterable,

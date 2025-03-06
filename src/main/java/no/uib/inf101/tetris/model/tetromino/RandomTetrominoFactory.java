@@ -5,6 +5,13 @@ import java.util.Random;
 public class RandomTetrominoFactory implements TetrominoFactory {
     private final Random random = new Random();
 
+    /**
+     * Genererer en ny tilfeldig Tetromino.
+     * Velger et tilfeldig symbol fra de gyldige Tetromino brikkene ('L', 'J', 'S', 'Z', 'T', 'I', 'O')
+     * og oppretter en ny Tetromino basert på en av de symbolene.
+     * 
+     * @return En ny tilfeldig Tetromino.
+     */
     @Override
     public Tetromino getNext() {
         char[] symbols = { 'L', 'J', 'S', 'Z', 'T', 'I', 'O' };
