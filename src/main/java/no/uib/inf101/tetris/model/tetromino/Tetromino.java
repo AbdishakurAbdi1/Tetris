@@ -132,9 +132,9 @@ public class Tetromino implements Iterable<GridCell> {
      * @param grid Griddimensions objket som representerer brettet.
      * @return En  ny Teromino som er sentrerer på brettet.
      */
-    public Tetromino shiftedToTopCenterOf(GridDimension grid){
-        int topGridRow=0;
-        int centerGridCol=0;
+    public Tetromino shiftedToTopCenterOf(GridDimension grid) {
+        int topGridRow = -1; // Øverste rad
+        int centerGridCol = (grid.cols() - shape[0].length) / 2; // Midterste kolonne basert på bredden til Tetromino
         return new Tetromino(symbol, shape, new CellPosition(topGridRow, centerGridCol));
     }
 
@@ -188,8 +188,5 @@ public class Tetromino implements Iterable<GridCell> {
     public int hashCode(){
         return Objects.hash(symbol, Arrays.deepHashCode(shape));
     }
-    
-
-
     
 }
