@@ -21,7 +21,7 @@ public class TetrisBoard extends Grid{
      * @param super for å arve konskuktøren i Grid som den er definert.
      */
     public TetrisBoard(int rows, int cols) {
-        super(rows, cols, '-'); //standard tom celle begynner med "-"
+        super(rows, cols,'-'); //standard tom celle begynner med "-"
         set(new CellPosition(0, 0), 'r'); // Rød i øvre venstre hjørne
         set(new CellPosition(rows()-1, 0), 'b'); // Blå i nedre venstre hjørne
         set(new CellPosition(0, cols()-1), 'y'); // Gul i øvre høyre hjørne
@@ -49,5 +49,17 @@ public class TetrisBoard extends Grid{
 
     public GridDimension getDimension() {
         return this; // Returnerer seg selv fordi det implementerer GridDimension
+    }
+
+
+    /**
+     * Sjekker om en gitt posisjon er innenfor brettets grenser.
+     *
+     * @param pos Posisjonen som skal sjekkes.
+     * @return "true" hvis posisjonen er innenfor brettet, ellers false".
+     */
+    public boolean contains(CellPosition pos) {
+        return pos.row() >= 0 && pos.row() < this.rows() &&
+               pos.col() >= 0 && pos.col() < this.cols();
     }
 }

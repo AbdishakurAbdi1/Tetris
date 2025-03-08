@@ -38,6 +38,35 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         this.fallingTetromino = tetrominoFactory.getNext().shiftedToTopCenterOf(board.getDimension()); // Initialiser Tetromino)
     }
 
+
+    @Override
+    public boolean moveTetromino(int deltaRow, int deltaCol) {
+        System.out.println("moveTetromino() kalt med deltaRow: " + deltaRow + ", deltaCol: " + deltaCol);
+        Tetromino candidate = fallingTetromino.shiftedBy(deltaRow, deltaCol);
+        if (isValidPosition(candidate)) {
+            fallingTetromino = candidate;
+            return true;
+        }
+        System.out.println("Flytting feilet: " + candidate);
+        return false;
+    }
+
+    /**
+     * Sjekker om en Tetromino kan plasseres på brettet.
+     * 
+     * @param tetromino Tetrominoen som skal sjekkes.
+     * @return `true` hvis den kan plasseres, ellers `false`.
+     */
+    private boolean isValidPosition(Tetromino tetromino) {
+        for (GridCell cell : tetromino) {
+            if (!board.contains(cell.pos()) || board.get(cell.pos()) != '-') {
+                System.out.println("Ugyldig posisjon: " + cell.pos()); //Debugger
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public GridDimension getDimension() {
         return board; // Dette er nok fordi TetrisBoard arver fra Grid som har dimensjoner
@@ -69,5 +98,8 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         return fallingTetromino;
     }
     
+    public TetrisBoard getBoard() {
+        return this.board;
+    }
 
 }

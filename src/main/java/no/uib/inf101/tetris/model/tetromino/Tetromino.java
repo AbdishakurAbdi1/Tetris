@@ -169,14 +169,16 @@ public class Tetromino implements Iterable<GridCell> {
      * @return {@code true} hvis objektet er en Teromino med samme symbol/fasong.
      */
     @Override
-    public boolean equals(Object obj){
-        if (this==obj){
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
-            }
-        if (!(obj instanceof Tetromino other)){
+        }
+        if (!(obj instanceof Tetromino other)) {
             return false;
-            }
-        return symbol == other.symbol && Arrays.deepEquals(shape, other.shape);
+        }
+        return symbol == other.symbol && 
+               Arrays.deepEquals(shape, other.shape) && 
+               position.equals(other.position); // Sjekk også posisjonen
     }
 
     /**
