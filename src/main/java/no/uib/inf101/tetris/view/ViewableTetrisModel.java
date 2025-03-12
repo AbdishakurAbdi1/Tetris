@@ -3,6 +3,7 @@ package no.uib.inf101.tetris.view;
 
 import no.uib.inf101.grid.GridCell;
 import no.uib.inf101.grid.GridDimension;
+import no.uib.inf101.tetris.model.GameState;
 
 public interface ViewableTetrisModel {
 
@@ -28,4 +29,15 @@ public interface ViewableTetrisModel {
      */
     Iterable<GridCell> getFallingTetrominoCells();
 
+
+    /**
+     * Henter den nåværende Game State.
+     * 
+     * @return Returnerer et objekt av typen GameState.
+     */
+    GameState getGameState ();
+
+    int getPointCounter();
+
+    Iterable<GridCell> fallingPiece();
 }

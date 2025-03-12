@@ -52,14 +52,76 @@ public class TetrisBoard extends Grid{
     }
 
 
-    /**
-     * Sjekker om en gitt posisjon er innenfor brettets grenser.
-     *
-     * @param pos Posisjonen som skal sjekkes.
-     * @return "true" hvis posisjonen er innenfor brettet, ellers false".
-     */
-    public boolean contains(CellPosition pos) {
+    
+    @Override
+    public boolean positionIsOnGrid(CellPosition pos) {
         return pos.row() >= 0 && pos.row() < this.rows() &&
                pos.col() >= 0 && pos.col() < this.cols();
+    }
+
+
+    /**
+     * Fjerner alle fulle rader og forskyver radene over nedover.
+     * @return Antall rader som ble fjernet.
+     */
+    public int clearFilledRows() {
+        int removedRows = 0;
+        for (int row = rows() - 1; row >= 0; row--) {
+            if (isRowFilled(row)) {
+                removeRow(row);
+                removedRows++;
+                //row++; // Fjernes for å sjekke samme rad på nytt
+            }
+        }
+        return removedRows;
+    }
+
+    /**
+     * Sjekker om en rad er full.
+     * @param row Raden som skal sjekkes.
+     * @return True hvis raden er full, ellers false.
+     */
+    private boolean isRowFilled(int row) {
+        for (int col = 0; col < cols(); col++) {
+            if (get(new CellPosition(row, col)) == '-') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Fjerner en spesifisert rad ved å forskyve radene over den nedover.
+     * @param row Raden som skal fjernes.
+     */
+    private void removeRow(int row) {
+        for (int r = row; r > 0; r--) {
+            copyRowTo(r - 1, r);
+        }
+        fillTopRowWithEmpty(0);
+        System.out.println("Fjerner rad: " + row);
+        System.out.println("Brett etter fjerning:\n" + prettyString());
+    }
+
+    /**
+     * Kopierer innholdet fra en rad til en annen.
+     * @param originalRow Raden som kopieres fra.
+     * @param targetRow Raden som kopieres til.
+     */
+    private void copyRowTo(int originalRow, int targetRow) {
+        for (int col = 0; col < cols(); col++) {
+            set(new CellPosition(targetRow, col), get(new CellPosition(originalRow, col)));
+        }
+        System.out.println("Kopierer rad " + originalRow + " til " + targetRow);
+    }
+
+    /**
+     * Fyller den øverste raden med tomme celler.
+     * @param row Raden som skal tømmes.
+     */
+    private void fillTopRowWithEmpty(int row) {
+        for (int col = 0; col < cols(); col++) {
+            set(new CellPosition(row, col), '-');
+        }
     }
 }

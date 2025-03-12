@@ -27,4 +27,42 @@ public class TetrisBoardTest {
         assertEquals(expected, board.prettyString());
     }
 
+    private TetrisBoard getTetrisBoardWithContents(String[] rows) {
+        int numRows = rows.length;
+        int numCols = rows[0].length();
+        TetrisBoard board = new TetrisBoard(numRows, numCols);
+    
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                char symbol = rows[row].charAt(col);
+                if (symbol != '-') { // Ikke sett tomme celler eksplisitt
+                    board.set(new CellPosition(row, col), symbol);
+                }
+            }
+        }
+        return board;
+    }
+
+    @Test
+    public void testRemoveFullRows() {
+        TetrisBoard board = getTetrisBoardWithContents(new String[] {
+            "-T",
+            "TT",
+            "LT",
+            "L-",
+            "LL"
+        });
+    
+        assertEquals(3, board.clearFilledRows());
+    
+        String expected = String.join("\n", new String[] {
+            "--",
+            "--",
+            "--",
+            "-T",
+            "L-"
+        });
+    
+        assertEquals(expected, board.prettyString());
+    }
 }

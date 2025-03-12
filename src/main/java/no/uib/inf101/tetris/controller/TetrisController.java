@@ -12,6 +12,7 @@ import javax.swing.Timer;
 
 import no.uib.inf101.tetris.midi.TetrisSong;
 //import no.uib.inf101.tetris.model.GameState;
+import no.uib.inf101.tetris.model.GameState;
 
 
 /**
@@ -21,6 +22,7 @@ public class TetrisController implements KeyListener {
     private final ControllableTetrisModel model;
     private final TetrisView view;
     private long lastMoveTime = 0;
+    private GameState gameState = GameState.ACTIVE_GAME; 
 
     public TetrisController(ControllableTetrisModel model, TetrisView view) {
         this.model = model;
@@ -33,13 +35,17 @@ public class TetrisController implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+    // Blokkerer input hvis spillet er over
+        if (model.getGameState() == GameState.GAME_OVER) {
+            return;
+        }
+
         System.out.println("Tastetrykk registrert: " + e.getKeyCode());
         long now = System.currentTimeMillis();
-        if (now - lastMoveTime < 100) { // 100ms debounce dette er fordi tetromino hoppet 2 rader/kolloner isteden for 1.
+        if (now - lastMoveTime < 100) { // 100ms debounce for å unngå doble bevegelser
             return;
         }
         lastMoveTime = now;
-
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             // Venstre pil - flytter brikken én kolonne til venstre
             model.moveTetromino(0, -1);
@@ -50,9 +56,10 @@ public class TetrisController implements KeyListener {
             // Ned pil - flytter brikken én rad ned
             model.moveTetromino(1, 0);
         } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            // Opp pil - for fremtidig rotering av brikken (kan implementeres senere)
+            // Opp pil - som roterer Tetromino
+            model.rotateTetromino();
         } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            // Mellomrom - kan brukes til å slippe brikken til bunnen (ikke implementert ennå)
+            model.dropTetromino(); //Dropper brikken til bunnen 
         }
         view.repaint(); // Oppdater GUI
     }

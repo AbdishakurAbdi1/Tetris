@@ -78,4 +78,25 @@ public class TestTetromino {
         assertEquals(t1.getSymbol(), shiftedT.getSymbol(), "Tetromino symbol should remain the same");
         assertEquals(t1, Tetromino.newTetromino('T'), "Shape should remain unchanged");
     }
+
+
+    @Test
+    void testRotationOfTShape() {
+        boolean[][] originalShape = {
+            {false, true, false},
+            {true, true, true},
+            {false, false, false}
+        };
+    
+        Tetromino tPiece = new Tetromino('T', originalShape, new CellPosition(5, 5));
+        Tetromino rotatedPiece = tPiece.rotateTetromino();
+    
+        boolean[][] expectedShape = {
+            {false, true, false},
+            {false, true, true},
+            {false, true, false}
+        };
+    
+        assertArrayEquals(expectedShape, rotatedPiece.getShape(), "Rotasjon av T-brikken er feil!");
+    }
 }

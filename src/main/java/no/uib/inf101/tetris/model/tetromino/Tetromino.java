@@ -9,24 +9,23 @@ import java.util.Objects;
 import java.util.List;
 import java.util.Iterator;
 
-import no.uib.inf101.grid.*;
 import no.uib.inf101.grid.GridDimension;
 
-
-/**Representerer en Tetromino-brikke i Tetris */
+/** Representerer en Tetromino-brikke i Tetris */
 public class Tetromino implements Iterable<GridCell> {
 
-/**
- * Private feltvariabler for en Tetromino
- * @param symbol Symbolet som represneterer hvilken type.
- * @param shape Boolean matrise som definerer formen.
- * @param position Startposijon på brettet.
- */
+    /**
+     * Private feltvariabler for en Tetromino
+     * 
+     * @param symbol   Symbolet som represneterer hvilken type.
+     * @param shape    Boolean matrise som definerer formen.
+     * @param position Startposijon på brettet.
+     */
     private final char symbol;
-    private final boolean [][] shape;
+    private final boolean[][] shape;
     private final CellPosition position;
 
-    private Tetromino(char symbol,boolean [][] shape,CellPosition position){
+    public Tetromino(char symbol, boolean[][] shape, CellPosition position) {
         this.symbol = symbol;
         this.shape = shape;
         this.position = position;
@@ -34,65 +33,68 @@ public class Tetromino implements Iterable<GridCell> {
 
     /**
      * Lager en ny Tetromino objekt basert på en gitt symbol/type.
-     * @param symbol Er symbolet for Tetromino enten ('L', 'J', 'S', 'Z', 'T', 'I', 'O').
+     * 
+     * @param symbol Er symbolet for Tetromino enten ('L', 'J', 'S', 'Z', 'T', 'I',
+     *               'O').
      * @return En ny Tetromino objekt.
-     * @throws IlligalArgumentException Hvis symbolet macther de definert over. 
+     * @throws IlligalArgumentException Hvis symbolet macther de definert over.
      */
-    public static Tetromino newTetromino(char symbol){
-        boolean [][] shape;
+    public static Tetromino newTetromino(char symbol) {
+        boolean[][] shape;
         if (symbol == 'L') {
-            shape = new boolean[][]{
-                {true, false,false},
-                {true, true,true},
-                {true, false,false}
+            shape = new boolean[][] {
+                    { false, false, false },
+                    { true, true, true },
+                    { true, false, false }
             };
         } else if (symbol == 'J') {
-            shape = new boolean[][]{
-                {false, false,false},
-                {true, true,true},
-                {false, false,true}
+            shape = new boolean[][] {
+                    { false, false, false },
+                    { true, true, true },
+                    { false, false, true }
             };
         } else if (symbol == 'S') {
-            shape = new boolean[][]{
-                {false, false, false},
-                {false, true, true},
-                {true,true,false}
+            shape = new boolean[][] {
+                    { false, false, false },
+                    { false, true, true },
+                    { true, true, false }
             };
         } else if (symbol == 'Z') {
-            shape = new boolean[][]{
-                {false, false, false},
-                {true, true, false},
-                {false,true,true}
+            shape = new boolean[][] {
+                    { false, false, false },
+                    { true, true, false },
+                    { false, true, true }
             };
         } else if (symbol == 'T') {
-            shape = new boolean[][]{
-                {false, false, false},
-                {true, true, true},
-                {false,true,false}
+            shape = new boolean[][] {
+                    { false, false, false },
+                    { true, true, true },
+                    { false, true, false }
             };
         } else if (symbol == 'I') {
-            shape = new boolean[][]{
-                {false,false,false,false},
-                {true,true,true,true},
-                {false,false,false,false},
-                {false,false,false,false}
+            shape = new boolean[][] {
+                    { false, false, false, false },
+                    { true, true, true, true },
+                    { false, false, false, false },
+                    { false, false, false, false }
             };
         } else if (symbol == 'O') {
-            shape = new boolean[][]{
-                {false,false,false,false},
-                {false,true,true,false},
-                {false,true,true,false},
-                {false,false,false,false}
+            shape = new boolean[][] {
+                    { false, false, false, false },
+                    { false, true, true, false },
+                    { false, true, true, false },
+                    { false, false, false, false }
             };
         } else {
             throw new IllegalArgumentException("Ukjent Tetromino-symbol: " + symbol);
         }
-    
+
         return new Tetromino(symbol, shape, new CellPosition(0, 0));
     }
 
     /**
      * Retunerer posisjonen av Tetromino.
+     * 
      * @return Posisjonen.
      */
     public CellPosition getPosition() {
@@ -101,6 +103,7 @@ public class Tetromino implements Iterable<GridCell> {
 
     /**
      * Retunerer symbolet av Tetromino.
+     * 
      * @return Symbolet.
      */
     public char getSymbol() {
@@ -109,6 +112,7 @@ public class Tetromino implements Iterable<GridCell> {
 
     /**
      * Retunerer fasongen av Tetromino.
+     * 
      * @return Fasongen.
      */
     public boolean[][] getShape() {
@@ -117,27 +121,26 @@ public class Tetromino implements Iterable<GridCell> {
 
     /**
      * Flytter Tetrominoen til en ny posisjon.
+     * 
      * @param deltaRow Antall rader å flytte.
      * @param deltaCol Antall kolonne å flytte.
      * @return En ny Tetromino (kopi) med oppdatert posisjon.
      */
-    public Tetromino shiftedBy(int deltaRow,int deltaCol){
-        return new Tetromino(symbol, shape, new CellPosition(position.row()+deltaRow, position.col()+deltaCol));
+    public Tetromino shiftedBy(int deltaRow, int deltaCol) {
+        return new Tetromino(symbol, shape, new CellPosition(position.row() + deltaRow, position.col() + deltaCol));
     }
-
-
 
     /**
      * Metoden sentrerer brikken i toppen av et gitt rutenett.
+     * 
      * @param grid Griddimensions objket som representerer brettet.
-     * @return En  ny Teromino som er sentrerer på brettet.
+     * @return En ny Teromino som er sentrerer på brettet.
      */
     public Tetromino shiftedToTopCenterOf(GridDimension grid) {
         int topGridRow = -1; // Øverste rad
         int centerGridCol = (grid.cols() - shape[0].length) / 2; // Midterste kolonne basert på bredden til Tetromino
         return new Tetromino(symbol, shape, new CellPosition(topGridRow, centerGridCol));
     }
-
 
     /**
      * Retunerer en iterator som iterer over alle cellene i Tetromino brikken.
@@ -148,10 +151,10 @@ public class Tetromino implements Iterable<GridCell> {
     @Override
     public Iterator<GridCell> iterator() {
         List<GridCell> cells = new ArrayList<>();
-    
+
         for (int r = 0; r < shape.length; r++) {
             for (int c = 0; c < shape[r].length; c++) {
-                if (shape[r][c]) {  // Kun celler som er en del av brikken
+                if (shape[r][c]) { // Kun celler som er en del av brikken
                     CellPosition pos = new CellPosition(position.row() + r, position.col() + c);
                     System.out.println("Adding cell: " + cells);
                     cells.add(new GridCell(pos, symbol));
@@ -161,10 +164,10 @@ public class Tetromino implements Iterable<GridCell> {
         return cells.iterator();
     }
 
-
     /**
      * Sammenligner denne Tetrominoen med et annet objekt.
      * to Tetrominoer regnes som like hvis de har samme symbol og samme fasong.
+     * 
      * @param obj Objketet som skal sammenlignes, den er av typen Objekt.
      * @return {@code true} hvis objektet er en Teromino med samme symbol/fasong.
      */
@@ -176,19 +179,42 @@ public class Tetromino implements Iterable<GridCell> {
         if (!(obj instanceof Tetromino other)) {
             return false;
         }
-        return symbol == other.symbol && 
-               Arrays.deepEquals(shape, other.shape) && 
-               position.equals(other.position); // Sjekk også posisjonen
+        return symbol == other.symbol &&
+                Arrays.deepEquals(shape, other.shape) &&
+                position.equals(other.position); // Sjekk også posisjonen
     }
 
     /**
      * Beregner hash koden for denne Tetrominoen.
-     * Hash koden er basert på symbolet og fasongen, slik at like tetrominoer for samme hash kode.
+     * Hash koden er basert på symbolet og fasongen, slik at like tetrominoer for
+     * samme hash kode.
+     * 
      * @return En integer verdi som representerer hash koden til Tetrominoen.
      */
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return Objects.hash(symbol, Arrays.deepHashCode(shape));
     }
-    
+
+
+    /**
+     * Lager en rotert kopi av Tetromino.
+     * 
+     * @param oldCols Kolonnene i originalfasongen
+     * @param oldRows Radene i orginalfasongen
+     * @return Rotert Tretomino med motsatt dimensjoner enn den originale.
+     */
+    public Tetromino rotateTetromino() {
+        int oldCols = shape[0].length;
+        int oldRows = shape.length;
+        boolean[][] rotatedShape = new boolean[oldCols][oldRows];
+
+        for (int r = 0; r < oldRows; r++) {
+            for (int c = 0; c < oldCols; c++){
+                rotatedShape[c][oldRows - 1 - r] = shape[r][c];
+            }
+        }
+        return new Tetromino(symbol, rotatedShape, position);
+    }
+
 }
