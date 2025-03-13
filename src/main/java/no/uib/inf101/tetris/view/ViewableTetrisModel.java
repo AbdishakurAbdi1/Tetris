@@ -37,7 +37,12 @@ public interface ViewableTetrisModel {
      */
     GameState getGameState ();
 
-    int getPointCounter();
+    /**
+     * Metode som henter ut poengoversikten
+     * 
+     * @return int som angir poengene
+     */
+    int getPointCounter ();
 
     Iterable<GridCell> fallingPiece();
 }

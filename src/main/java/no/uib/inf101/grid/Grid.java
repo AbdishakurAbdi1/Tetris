@@ -59,6 +59,9 @@ public class Grid implements IGrid {
 
         int row = pos.row();
         int col = pos.col();
+        if (cells.get(row) == null) {
+            System.out.println("FEIL: Raden " + row + " er ikke initialisert!");
+        }
         cells.get(row).set(col, symbol);
     }
 
@@ -69,6 +72,9 @@ public class Grid implements IGrid {
 
         int row = pos.row();
         int col = pos.col();
+        if (cells.get(row) == null) {
+            System.out.println("FEIL: Raden " + row + " er ikke initialisert!");
+        }
         return cells.get(row).get(col);
     }
 
@@ -77,9 +83,9 @@ public class Grid implements IGrid {
         boolean isWithinRowBound = pos.row() >= 0 && pos.row() < rows;
         boolean isWithinColBound = pos.col() >= 0 && pos.col() < cols;
 
-        return isWithinRowBound && isWithinColBound;
-    }
+        System.out.println("Sjekker posisjon: (" + pos.row() + ", " + pos.col() + ") → " + (isWithinRowBound && isWithinColBound));
 
-    
-    
+        return isWithinRowBound && isWithinColBound;
+        
+    }
 } 

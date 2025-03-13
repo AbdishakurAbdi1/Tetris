@@ -35,4 +35,17 @@ public interface ControllableTetrisModel {
      * @return Returnerer et objekt av typen GameState som representerer nåværende state.
      */
     GameState getGameState ();
+
+     /**
+     * Returnerer antall millisekunder mellom hvert klokkeslag.
+     * 
+     * @return millisekunder mellom hver oppdatering.
+     */
+    int getTimerDelay();
+
+    /**
+     * Metoden som kalles hver gang klokken slår.
+     * vil flytte den aktive tetrominoen en rad nedover. 
+     */
+    public void clockTick ();
 }

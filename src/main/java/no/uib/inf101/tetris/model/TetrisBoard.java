@@ -5,27 +5,22 @@ import no.uib.inf101.grid.CellPosition;
 import no.uib.inf101.grid.Grid;
 import no.uib.inf101.grid.GridDimension;
 
-
 /**
  * Representerer brettet i Tetris-spillet.
- * Denne klassen håndterer hvordan celler legges til og fjernes, 
+ * Denne klassen håndterer hvordan celler legges til og fjernes,
  * for eksempel når en rad fylles opp og forsvinner.
  * Arver fra 'Grid'.
  */
-public class TetrisBoard extends Grid{
-   /**
+public class TetrisBoard extends Grid {
+    /**
      * Oppretter et nytt Tetris-brett med spesifisert antall rader og kolonner.
      *
-     * @param rows Antall rader i brettet.
-     * @param cols Antall kolonner i brettet. 
+     * @param rows  Antall rader i brettet.
+     * @param cols  Antall kolonner i brettet.
      * @param super for å arve konskuktøren i Grid som den er definert.
      */
     public TetrisBoard(int rows, int cols) {
-        super(rows, cols,'-'); //standard tom celle begynner med "-"
-        set(new CellPosition(0, 0), 'r'); // Rød i øvre venstre hjørne
-        set(new CellPosition(rows()-1, 0), 'b'); // Blå i nedre venstre hjørne
-        set(new CellPosition(0, cols()-1), 'y'); // Gul i øvre høyre hjørne
-        set(new CellPosition(rows()-1, cols()-1), 'w');   // Hvit i nedre høyre hjørne
+        super(rows, cols, '-'); // standard tom celle begynner med "-"
     }
 
     /**
@@ -33,44 +28,47 @@ public class TetrisBoard extends Grid{
      * For testing purposes.
      *
      * @return a string representation of the board
-     * StringBuilder kommer fra Java’s standardbibliotek,
-     * den gjør string mutable 
+     *         StringBuilder kommer fra Java’s standardbibliotek,
+     *         den gjør string mutable
      */
-    public String prettyString(){
-        StringBuilder sb= new StringBuilder();
-        for (int row=0; row<rows(); row++) {
-            for (int col=0; col<cols();col++) {
-                sb.append(get(new CellPosition(row, col))); // get henter riktig char for hvert celle 
+    public String prettyString() {
+        StringBuilder sb = new StringBuilder();
+        for (int row = 0; row < rows(); row++) {
+            for (int col = 0; col < cols(); col++) {
+                sb.append(get(new CellPosition(row, col))); // get henter riktig char for hvert celle
             }
-            sb.append("\n"); //ny linje for hvert row
+            if (row != rows()-1) {
+                sb.append("\n"); // ny linje for hvert row
+            }
         }
-        return sb.toString(); // Konverterer StringBuilder objketet til en vanlig String objekt og retunerer det
+        return sb.toString(); // Konverterer StringBuilder objketet til en vanlig String objekt og retunerer
+                              // det
     }
 
     public GridDimension getDimension() {
         return this; // Returnerer seg selv fordi det implementerer GridDimension
     }
 
-
-    
     @Override
     public boolean positionIsOnGrid(CellPosition pos) {
         return pos.row() >= 0 && pos.row() < this.rows() &&
-               pos.col() >= 0 && pos.col() < this.cols();
+                pos.col() >= 0 && pos.col() < this.cols();
     }
-
 
     /**
      * Fjerner alle fulle rader og forskyver radene over nedover.
+     * 
      * @return Antall rader som ble fjernet.
      */
     public int clearFilledRows() {
         int removedRows = 0;
-        for (int row = rows() - 1; row >= 0; row--) {
+        for (int row = rows() - 1; row >= 0;) {
             if (isRowFilled(row)) {
+                System.out.println("Removing" + row);
                 removeRow(row);
                 removedRows++;
-                //row++; // Fjernes for å sjekke samme rad på nytt
+            } else {
+                row--;
             }
         }
         return removedRows;
@@ -78,6 +76,7 @@ public class TetrisBoard extends Grid{
 
     /**
      * Sjekker om en rad er full.
+     * 
      * @param row Raden som skal sjekkes.
      * @return True hvis raden er full, ellers false.
      */
@@ -92,6 +91,7 @@ public class TetrisBoard extends Grid{
 
     /**
      * Fjerner en spesifisert rad ved å forskyve radene over den nedover.
+     * 
      * @param row Raden som skal fjernes.
      */
     private void removeRow(int row) {
@@ -105,8 +105,9 @@ public class TetrisBoard extends Grid{
 
     /**
      * Kopierer innholdet fra en rad til en annen.
+     * 
      * @param originalRow Raden som kopieres fra.
-     * @param targetRow Raden som kopieres til.
+     * @param targetRow   Raden som kopieres til.
      */
     private void copyRowTo(int originalRow, int targetRow) {
         for (int col = 0; col < cols(); col++) {
@@ -117,6 +118,7 @@ public class TetrisBoard extends Grid{
 
     /**
      * Fyller den øverste raden med tomme celler.
+     * 
      * @param row Raden som skal tømmes.
      */
     private void fillTopRowWithEmpty(int row) {

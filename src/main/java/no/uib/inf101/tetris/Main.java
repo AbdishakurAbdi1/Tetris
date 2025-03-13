@@ -22,9 +22,9 @@ public class Main {
         
 
         // Opprett en TetrisController og koble det til modellen og visningen
-        TetrisController controller = new TetrisController(model, view);
-        view.addKeyListener(controller); //Tastetrykket
-        view.setFocusable(true); //For at tasteturkontroller funkr
+        new TetrisController(model, view);
+        // view.addKeyListener(controller); //Tastetrykket
+        // view.setFocusable(true); //For at tasteturkontroller funkr
         view.requestFocusInWindow(); //Sørger for at vinduet fanger opp tatstetrykk
 
         JFrame frame = new JFrame(WINDOW_TITLE);
