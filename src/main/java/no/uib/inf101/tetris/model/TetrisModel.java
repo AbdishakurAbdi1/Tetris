@@ -176,6 +176,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
             }
         }
         return false; // Ingen rotasjon mulig
+        
     }
 
     @Override

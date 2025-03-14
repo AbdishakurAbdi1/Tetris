@@ -179,9 +179,9 @@ public class Tetromino implements Iterable<GridCell> {
         if (!(obj instanceof Tetromino other)) {
             return false;
         }
-        return symbol == other.symbol &&
-                Arrays.deepEquals(shape, other.shape) &&
-                position.equals(other.position); // Sjekk også posisjonen
+        return this.symbol == other.symbol &&
+                Arrays.deepEquals(this.shape, other.shape) &&
+                this.position.equals(other.position); // Sjekk også posisjonen
     }
 
     /**
