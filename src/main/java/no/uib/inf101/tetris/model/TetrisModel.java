@@ -240,22 +240,18 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
      * Hvis den nye Tetrominoen ikke kan plasseres, settes spillet til GAME_OVER.
      */
     private void newFallingTetromino() {
-        fallingTetromino = tetrominoFactory.getNext().shiftedToTopCenterOf(board);
-    
-        // Ekstra sjekk: Er øverste rad blokkert?
-        for (int col = 0; col < board.cols(); col++) {
-            if (board.get(new CellPosition(0, col)) != '-') {
-                this.gameState = GameState.GAME_OVER;
-                this.fallingTetromino = null; // Ingen ny brikke etter GAME_OVER
-                System.out.println("Game Over: Øverste rad er blokkert!");
-                return;
-            }
+        // Hvis spillet allerede er over, gjør ingenting
+        if (gameState == GameState.GAME_OVER) {
+            return;
         }
+    
+        // Generer ny Tetromino
+        this.fallingTetromino = tetrominoFactory.getNext().shiftedToTopCenterOf(board);
     
         // Sjekk om den nye Tetrominoen faktisk kan plasseres
         if (!isValidPosition(this.fallingTetromino)) {
             this.gameState = GameState.GAME_OVER;
-            this.fallingTetromino = null;
+            this.fallingTetromino = null; // Ingen ny brikke etter GAME_OVER
             System.out.println("Game Over: Ingen plass til ny brikke!");
         }
     }
