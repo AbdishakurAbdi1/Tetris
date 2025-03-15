@@ -28,12 +28,12 @@ public class TetrisBoard extends Grid {
      * @return en strengrepresentasjon av brettet
      */
     public String prettyString() {
-        StringBuilder sb = new StringBuilder(); //StringBuilder gjør string mutable.
+        StringBuilder sb = new StringBuilder(); // StringBuilder gjør string mutable.
         for (int row = 0; row < rows(); row++) {
             for (int col = 0; col < cols(); col++) {
                 sb.append(get(new CellPosition(row, col))); // get henter riktig char for hvert celle
             }
-            if (row != rows()-1) {
+            if (row != rows() - 1) {
                 sb.append("\n"); // ny linje for hvert row
             }
         }
@@ -41,7 +41,6 @@ public class TetrisBoard extends Grid {
                               // det
     }
 
-    
     /**
      * @return denne instansen siden den implementerer GridDimension.
      */

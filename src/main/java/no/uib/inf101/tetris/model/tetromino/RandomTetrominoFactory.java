@@ -7,7 +7,8 @@ public class RandomTetrominoFactory implements TetrominoFactory {
 
     /**
      * Genererer en ny tilfeldig Tetromino.
-     * Velger et tilfeldig symbol fra de gyldige Tetromino brikkene ('L', 'J', 'S', 'Z', 'T', 'I', 'O')
+     * Velger et tilfeldig symbol fra de gyldige Tetromino brikkene ('L', 'J', 'S',
+     * 'Z', 'T', 'I', 'O')
      * og oppretter en ny Tetromino basert på en av de symbolene.
      * 
      * @return En ny tilfeldig Tetromino.

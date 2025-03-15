@@ -10,7 +10,7 @@ import no.uib.inf101.tetris.model.tetromino.*;
 
 import java.util.Set;
 
-public class TestRandomTetrominoFactory{
+public class TestRandomTetrominoFactory {
     private TetrominoFactory factory;
 
     @BeforeEach

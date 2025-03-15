@@ -32,7 +32,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         this.tetrominoFactory = new RandomTetrominoFactory();
         this.fallingTetromino = tetrominoFactory.getNext().shiftedToTopCenterOf(board.getDimension()); // Initialiser
                                                                                                        // Tetromino
-        //this.gameState = GameState.ACTIVE_GAME; // Starter med ACTIVE_GAME
+        // this.gameState = GameState.ACTIVE_GAME; // Starter med ACTIVE_GAME
     };
 
     /**
@@ -47,7 +47,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         this.fallingTetromino = tetrominoFactory.getNext().shiftedToTopCenterOf(board.getDimension()); // Initialiser
                                                                                                        // Tetromino)
 
-        this.gameState = GameState.ACTIVE_GAME; // Starter med ACTIVE_GAME                                                                                                
+        this.gameState = GameState.ACTIVE_GAME; // Starter med ACTIVE_GAME
     }
 
     @Override
@@ -92,7 +92,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
 
     @Override
     public Iterable<GridCell> getTilesOnBoard() {
-        return board; 
+        return board;
     }
 
     /**
@@ -102,7 +102,6 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         return fallingTetromino;
     }
 
-    
     public Iterable<GridCell> getFallingTetrominoCells() {
         if (fallingTetromino == null) {
             return Collections.emptyList(); // Returnerer en tom liste hvis ingen brikke faller
@@ -119,7 +118,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
 
     // @Override
     // public Iterable<GridCell> fallingPiece() {
-    //     return fallingTetromino;
+    // return fallingTetromino;
     // }
 
     /**
@@ -144,7 +143,8 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         // Wall Kick: Når Tetromino/brikken er helt øverst eller helt
         // inntill kantenene, kan de ikke roteres fordi deler av av den vil falle
         // utenfor brettet. Derfor må vi implementere wall kick som flytter brikken en
-        // liten hakk inn igjen under rotajon, slik at hele brikken kan roteres innenfor brettet.
+        // liten hakk inn igjen under rotajon, slik at hele brikken kan roteres innenfor
+        // brettet.
         int currentCol = fallingTetromino.getPosition().col();
         int currentRow = fallingTetromino.getPosition().row();
 
@@ -175,7 +175,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
             }
         }
         return false; // Ingen rotasjon mulig
-        
+
     }
 
     @Override
@@ -184,7 +184,6 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         return this.gameState;
     }
 
-    
     @Override
     public void dropTetromino() {
         if (gameState == GameState.GAME_OVER)
@@ -205,7 +204,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         System.out.println("Brett etter fjerning:\n" + board.prettyString());
         System.out.println("Antall rader fjernet: " + rowsCleared);
 
-        if (rowsCleared > 0) { 
+        if (rowsCleared > 0) {
             pointGiver(rowsCleared); // Send antall rader fjernet til pointGiver
         }
         newFallingTetromino(); // Lager ny brikke (hvis mulig)
@@ -238,10 +237,10 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         if (gameState == GameState.GAME_OVER) {
             return;
         }
-    
+
         // Generer ny Tetromino
         this.fallingTetromino = tetrominoFactory.getNext().shiftedToTopCenterOf(board);
-    
+
         // Sjekk om den nye Tetrominoen faktisk kan plasseres
         if (!isValidPosition(this.fallingTetromino)) {
             this.gameState = GameState.GAME_OVER;
@@ -282,7 +281,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
      * Denne metoden brukes i dropTetromino og clockTick.
      * Den oppdaterer feltvariabelen 'pointCounter',
      * som brukes i metoden getPointCounter for at det seinere skal vises i GUI.
-     *  */
+     */
     public void pointGiver(int rowsRemoved) {
         if (rowsRemoved == 1) {
             pointCounter += 100;
@@ -294,7 +293,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
             pointCounter += 800;
         } else if (rowsRemoved == 5) {
             pointCounter += 1000;
-        } 
+        }
     }
 
     /**
@@ -307,44 +306,44 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         if (fallingTetromino == null) {
             return null; // Returnerer null hvis ingen brikke faller
         }
-    
+
         Tetromino shadow = new Tetromino( // Oppretter en kopi
-            fallingTetromino.getSymbol(),
-            fallingTetromino.getShape(),
-            fallingTetromino.getPosition()
-        );
-    
+                fallingTetromino.getSymbol(),
+                fallingTetromino.getShape(),
+                fallingTetromino.getPosition());
+
         // Flytt skyggebrikken nedover så lenge den kan flytte seg
         while (canMoveTetromino(shadow, 1, 0)) {
             shadow = shadow.shiftedBy(1, 0);
         }
-    
+
         return shadow;
     }
 
     /**
-     * Sjekker om den gitte Tetrominoen kan flytte seg med de angitte 
-     * rad og kolonne forskyvningene uten å kollidere med andre brikker 
+     * Sjekker om den gitte Tetrominoen kan flytte seg med de angitte
+     * rad og kolonne forskyvningene uten å kollidere med andre brikker
      * eller gå utenfor brettet.
      *
      * @param tetromino Tetrominoen som skal sjekkes.
-     * @param deltaRow Antall rader Tetrominoen skal flyttes.
-     * @param deltaCol Antall kolonner Tetrominoen skal flyttes.
-     * @return true hvis Tetrominoen kan flyttes til den nye posisjonen, ellers false.
+     * @param deltaRow  Antall rader Tetrominoen skal flyttes.
+     * @param deltaCol  Antall kolonner Tetrominoen skal flyttes.
+     * @return true hvis Tetrominoen kan flyttes til den nye posisjonen, ellers
+     *         false.
      */
     private boolean canMoveTetromino(Tetromino tetromino, int deltaRow, int deltaCol) {
         Tetromino movedTetromino = tetromino.shiftedBy(deltaRow, deltaCol);
-        return isValidPosition(movedTetromino); 
+        return isValidPosition(movedTetromino);
     }
 
     @Override
     public Iterable<GridCell> getShadowTetrominoCells() {
         Tetromino shadow = getShadowTetromino();
-        
+
         if (shadow == null) {
             return Collections.emptyList(); // Sikrer at vi ikke returnerer null
         }
-    
+
         List<GridCell> shadowCells = new ArrayList<>();
         for (GridCell cell : shadow) {
             shadowCells.add(cell);

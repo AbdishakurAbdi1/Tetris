@@ -3,7 +3,6 @@ package no.uib.inf101.grid.tetris;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-
 import org.junit.jupiter.api.BeforeEach;
 
 import no.uib.inf101.grid.CellPosition;
@@ -12,7 +11,6 @@ import no.uib.inf101.tetris.model.TetrisModel;
 import no.uib.inf101.tetris.model.tetromino.Tetromino;
 import no.uib.inf101.tetris.model.tetromino.TetrominoFactory;
 import no.uib.inf101.tetris.model.tetromino.RandomTetrominoFactory;
-
 
 public class TetrisModelTest {
     private TetrisModel model;
@@ -23,7 +21,6 @@ public class TetrisModelTest {
         factory = new RandomTetrominoFactory();
         model = new TetrisModel(factory);
     }
-
 
     @Test
     void testMoveTetromino() {
@@ -39,7 +36,8 @@ public class TetrisModelTest {
 
     @Test
     void testCannotMoveOutOfBounds() {
-        while (model.moveTetromino(0, -1)); // Flytt så langt til venstre som mulig
+        while (model.moveTetromino(0, -1))
+            ; // Flytt så langt til venstre som mulig
         assertFalse(model.moveTetromino(0, -1), "Brikken skal ikke kunne forlate brettet til venstre.");
     }
 
@@ -75,7 +73,8 @@ public class TetrisModelTest {
 
     @Test
     void testRotateTetrominoWithWallKick() {
-        while (model.moveTetromino(0, -1)); // Sett brikken mot venstre vegg
+        while (model.moveTetromino(0, -1))
+            ; // Sett brikken mot venstre vegg
         assertTrue(model.rotateTetromino(), "Rotasjon burde fungere med Wall Kick.");
     }
 
@@ -84,16 +83,16 @@ public class TetrisModelTest {
         Tetromino beforeDrop = model.getFallingTetromino();
         model.dropTetromino();
         Tetromino afterDrop = model.getFallingTetromino();
-    
+
         assertNotNull(afterDrop, "Det skal alltid være en ny brikke etter dropp, med mindre Game Over.");
 
         assertNotEquals(beforeDrop, afterDrop, "En ny brikke burde genereres etter dropp.");
 
         assertNotEquals(System.identityHashCode(beforeDrop), System.identityHashCode(afterDrop),
-        "Den nye brikken burde være en ny instans etter dropp.");
+                "Den nye brikken burde være en ny instans etter dropp.");
 
-        assertNotEquals(beforeDrop.getSymbol(), afterDrop.getSymbol(), 
-        "Den nye brikken burde ha et annet symbol etter dropp.");
+        assertNotEquals(beforeDrop.getSymbol(), afterDrop.getSymbol(),
+                "Den nye brikken burde ha et annet symbol etter dropp.");
     }
 
     @Test
@@ -108,17 +107,15 @@ public class TetrisModelTest {
         }
     }
 
-
-
     @Test
     public void testClockTickMoves() {
         TetrisModel model = new TetrisModel();
-        CellPosition initialPosition = model.getFallingTetromino().getPosition(); //Får tak i posisjonen.
-    
-        model.clockTick(); //klokkestikk tetromino skal flytte seg ned
-    
+        CellPosition initialPosition = model.getFallingTetromino().getPosition(); // Får tak i posisjonen.
+
+        model.clockTick(); // klokkestikk tetromino skal flytte seg ned
+
         CellPosition newPosition = model.getFallingTetromino().getPosition();
-    
+
         // Sjekk at tetrominoen har beveget seg ned en rad
         assertEquals(initialPosition.row() + 1, newPosition.row());
         assertEquals(initialPosition.col(), newPosition.col());
@@ -128,15 +125,14 @@ public class TetrisModelTest {
     public void testClockTickLocksTetromino() {
         TetrisModel model = new TetrisModel();
 
-        //Flytt tetrominoen til bunnen for å stoppe den
-        while (model.moveTetromino(1, 0));
+        // Flytt tetrominoen til bunnen for å stoppe den
+        while (model.moveTetromino(1, 0))
+            ;
 
-        //Kaller clockTick så skal tetrominoen låses fast
+        // Kaller clockTick så skal tetrominoen låses fast
         model.clockTick();
 
-        //Sjekk at en ny tetromino er generert (den forrige er låst fast)
+        // Sjekk at en ny tetromino er generert (den forrige er låst fast)
         assertNotEquals(model.getFallingTetromino(), null);
     }
 }
-
-

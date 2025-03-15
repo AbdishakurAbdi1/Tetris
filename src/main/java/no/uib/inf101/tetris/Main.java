@@ -14,28 +14,27 @@ import no.uib.inf101.tetris.controller.TetrisController;
 //AA
 
 public class Main {
-	
-	public static final String WINDOW_TITLE = "INF101 TETRIS";
+
+    public static final String WINDOW_TITLE = "INF101 TETRIS";
 
     public static void main(String[] args) {
-        TetrominoFactory factory = new RandomTetrominoFactory(); //Opprett en TetrominoFactory
-        TetrisModel model = new TetrisModel(factory); //Send factory til TetrisModel
-        TetrisView view = new TetrisView(model); 
-        
+        TetrominoFactory factory = new RandomTetrominoFactory(); // Opprett en TetrominoFactory
+        TetrisModel model = new TetrisModel(factory); // Send factory til TetrisModel
+        TetrisView view = new TetrisView(model);
 
         // Opprett en TetrisController og koble det til modellen og visningen
         new TetrisController(model, view);
         // view.addKeyListener(controller); //Tastetrykket
         // view.setFocusable(true); //For at tasteturkontroller funkr
-        view.requestFocusInWindow(); //Sørger for at vinduet fanger opp tatstetrykk
+        view.requestFocusInWindow(); // Sørger for at vinduet fanger opp tatstetrykk
 
         JFrame frame = new JFrame(WINDOW_TITLE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(view);
         frame.pack();
         frame.setVisible(true);
-        
-        //Åpne GUI i midten av skjermen
+
+        // Åpne GUI i midten av skjermen
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setLocation(dim.width / 2 - frame.getSize().width / 2, dim.height / 2 - frame.getSize().height / 2);
     }

@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
 
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestTetromino {
@@ -33,27 +32,26 @@ public class TestTetromino {
         assertEquals(new CellPosition(0, 0), t1.getPosition(), "Tetromino position should be (0,0)");
     }
 
-
     @Test
     public void testHashcode() {
-        assertEquals(t1.hashCode(), t2.hashCode());  // Samme symbol og fasong
+        assertEquals(t1.hashCode(), t2.hashCode()); // Samme symbol og fasong
         assertNotEquals(t1.hashCode(), t3.hashCode()); // Forskjellig symbol og fasong
     }
 
     @Test
     public void testEquals() {
-        assertEquals(t1, t2);  // Samme symbol og fasong
+        assertEquals(t1, t2); // Samme symbol og fasong
         assertNotEquals(t1, t3); // Forskjellig symbol og fasong
     }
 
-    @Test 
-    public void testIterator(){
-        Iterator<GridCell> iterator=t1.iterator();
+    @Test
+    public void testIterator() {
+        Iterator<GridCell> iterator = t1.iterator();
         assertTrue(iterator.hasNext());
-        
+
         while (iterator.hasNext()) {
-            GridCell cell= iterator.next();
-            assertNotNull(cell,"Iterator skal ikke retunere null verdier");
+            GridCell cell = iterator.next();
+            assertNotNull(cell, "Iterator skal ikke retunere null verdier");
         }
     }
 
@@ -69,24 +67,23 @@ public class TestTetromino {
         assertEquals(t1, Tetromino.newTetromino('T'), "Shape should remain unchanged");
     }
 
-
     @Test
     void testRotationOfTShape() {
         boolean[][] originalShape = {
-            {false, true, false},
-            {true, true, true},
-            {false, false, false}
+                { false, true, false },
+                { true, true, true },
+                { false, false, false }
         };
-    
+
         Tetromino tPiece = new Tetromino('T', originalShape, new CellPosition(5, 5));
         Tetromino rotatedPiece = tPiece.rotateTetromino();
-    
+
         boolean[][] expectedShape = {
-            {false, true, false},
-            {false, true, true},
-            {false, true, false}
+                { false, true, false },
+                { false, true, true },
+                { false, true, false }
         };
-    
+
         assertArrayEquals(expectedShape, rotatedPiece.getShape(), "Rotasjon av T-brikken er feil!");
     }
 }

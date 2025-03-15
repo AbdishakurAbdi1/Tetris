@@ -4,7 +4,6 @@ import java.awt.Color;
 
 public class ColorTheme {
 
-
     /**
      * Gir de forskjellige symbolene hver sin farge.
      * 
@@ -41,24 +40,24 @@ public class ColorTheme {
         return new Color(0, 0, 0, 128);
     }
 
-
     /**
      * Henter fargen for griden ved spillslutt.
      * 
      * @return Gjennomsiktig farge.
      */
-    public Color GameOverOverlayColor()  {
+    public Color GameOverOverlayColor() {
         return (new Color(0, 0, 0, 128));
     }
-     /**
+
+    /**
      * Henter fargen for teksten ved spillslutt.
      * 
      * @return Hvit farge.
      */
 
     public Color GameOverTextColor() {
-        return Color.WHITE; 
-   
+        return Color.WHITE;
+
     }
 
 }

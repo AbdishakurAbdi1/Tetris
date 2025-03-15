@@ -30,7 +30,8 @@ public class Tetromino implements Iterable<GridCell> {
      * @param symbol Er symbolet for Tetromino enten ('L', 'J', 'S', 'Z', 'T', 'I',
      *               'O').
      * @return En ny Tetromino objekt.
-     * @throws IlligalArgumentException Hvis symbolet ikke macther de definerte over.
+     * @throws IlligalArgumentException Hvis symbolet ikke macther de definerte
+     *                                  over.
      * 
      * @return En ny tetromino objekt.
      */
@@ -145,8 +146,8 @@ public class Tetromino implements Iterable<GridCell> {
      * 
      * @return Iterasjon over alle cellene.
      * 
-     * Kommenterer her selvom det er en arvet metode,
-     * fordi den har litt annen implementasjon og for lærings skyld.
+     *         Kommenterer her selvom det er en arvet metode,
+     *         fordi den har litt annen implementasjon og for lærings skyld.
      */
     @Override
     public Iterator<GridCell> iterator() {
@@ -170,7 +171,8 @@ public class Tetromino implements Iterable<GridCell> {
      * 
      * @param obj Objketet som skal sammenlignes, den er av typen Objekt.
      * 
-     * @return {@code true} hvis objektet er en Teromino med samme symbol, fasong og posisjon.
+     * @return {@code true} hvis objektet er en Teromino med samme symbol, fasong og
+     *         posisjon.
      */
     @Override
     public boolean equals(Object obj) {
@@ -197,7 +199,6 @@ public class Tetromino implements Iterable<GridCell> {
         return Objects.hash(symbol, Arrays.deepHashCode(shape));
     }
 
-
     /**
      * Lager en rotert kopi av Tetromino.
      * 
@@ -212,7 +213,7 @@ public class Tetromino implements Iterable<GridCell> {
         boolean[][] rotatedShape = new boolean[oldCols][oldRows];
 
         for (int r = 0; r < oldRows; r++) {
-            for (int c = 0; c < oldCols; c++){
+            for (int c = 0; c < oldCols; c++) {
                 rotatedShape[c][oldRows - 1 - r] = shape[r][c];
             }
         }

@@ -11,7 +11,8 @@ public interface ControllableTetrisModel {
      * Forsøker å flytte den fallende tetrominoen.
      * 
      * @param deltaRow Antall rader å flytte (posetiv verdi = nedover).
-     * @param deltaCol Antall kolloner å flytte (posetiv verdi = høyre, negativ verdi = venstre).
+     * @param deltaCol Antall kolloner å flytte (posetiv verdi = høyre, negativ
+     *                 verdi = venstre).
      * @return "true" vist flyttingen var gjennomført, ellers false vist ikke.
      */
     boolean moveTetromino(int deltaRow, int deltaCol);
@@ -20,23 +21,24 @@ public interface ControllableTetrisModel {
      * En metode som roterer Treromino.
      * 
      * @return En kopi av originale Tetromino men med ny fasong.
-    */
+     */
     boolean rotateTetromino();
 
     /**
-     * Dropper den fallende Tetromino helt til bunnen av brettet når man bruker space.
+     * Dropper den fallende Tetromino helt til bunnen av brettet når man bruker
+     * space.
      */
     void dropTetromino();
-
 
     /**
      * Henter den nåværende Game State.
      * 
-     * @return Returnerer et objekt av typen GameState som representerer nåværende state.
+     * @return Returnerer et objekt av typen GameState som representerer nåværende
+     *         state.
      */
-    GameState getGameState ();
+    GameState getGameState();
 
-     /**
+    /**
      * Returnerer antall millisekunder mellom hvert klokkeslag.
      * 
      * @return millisekunder mellom hver oppdatering.
@@ -45,7 +47,7 @@ public interface ControllableTetrisModel {
 
     /**
      * Metoden som kalles hver gang klokken slår.
-     * vil flytte den aktive tetrominoen en rad nedover. 
+     * vil flytte den aktive tetrominoen en rad nedover.
      */
-    public void clockTick ();
+    public void clockTick();
 }

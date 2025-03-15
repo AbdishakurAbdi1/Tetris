@@ -2,7 +2,6 @@
 //og Styrer hvordan brikken faller automatisk over tid.
 package no.uib.inf101.tetris.controller;
 
-
 import no.uib.inf101.tetris.view.TetrisView;
 import java.awt.event.KeyListener;
 
@@ -25,12 +24,11 @@ public class TetrisController implements KeyListener {
     private final Timer timer;
     private final TetrisSong song;
 
-
     /**
      * Oppretter en TetrisController som styrer spillet og håndterer brukerinput.
      * 
      * @param model Spillmodellen som håndterer logikken.
-     * @param view Visningen som tegner spillet.
+     * @param view  Visningen som tegner spillet.
      */
     public TetrisController(ControllableTetrisModel model, TetrisView view) {
         this.model = model;
@@ -47,14 +45,14 @@ public class TetrisController implements KeyListener {
         view.addKeyListener(this);
         view.setFocusable(true);
 
-        //Starter timer og song
+        // Starter timer og song
         timer.start();
         song.run();
     }
 
     /**
      * Håndterer tastetrykk i Tetris-spillet.
-     * Håndterer også rotering eller slipping av Tetromino brikken. Den ignorerer 
+     * Håndterer også rotering eller slipping av Tetromino brikken. Den ignorerer
      * input hvis spillet er over.
      * 
      * @param e KeyEvent-objektet som inneholder informasjon om tastetrykket.

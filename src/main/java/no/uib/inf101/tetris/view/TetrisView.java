@@ -15,7 +15,6 @@ import java.awt.geom.Rectangle2D;
 import java.awt.Color;
 import java.awt.Font;
 
-
 public class TetrisView extends JPanel {
 
     public static final int OUTERMARGIN = 15;
@@ -71,7 +70,6 @@ public class TetrisView extends JPanel {
 
         // Tegner den fallende brikken over brettet
         drawCells(g2, viewableTetrisModel.getFallingTetrominoCells(), converter, colorTheme);
-        
 
         if (viewableTetrisModel.getGameState() == GameState.GAME_OVER) {
             // Tegner "Game Over" overlay
@@ -99,11 +97,12 @@ public class TetrisView extends JPanel {
     }
 
     /**
-     * Tegner en liste av celler på skjermen ved å bruke en gitt fargepalett og posisjon.
+     * Tegner en liste av celler på skjermen ved å bruke en gitt fargepalett og
+     * posisjon.
      *
-     * @param g2        Grafikkobjektet som brukes for å tegne.
-     * @param iterable  Iterable liste over GridCell objekter som skal tegnes.
-     * @param converter Konverterer celleposisjoner til pikselkoordinater.
+     * @param g2         Grafikkobjektet som brukes for å tegne.
+     * @param iterable   Iterable liste over GridCell objekter som skal tegnes.
+     * @param converter  Konverterer celleposisjoner til pikselkoordinater.
      * @param colorTheme Fargetemaet som bestemmer cellenes farge.
      */
     private static void drawCells(Graphics2D g2, Iterable<GridCell> iterable,
@@ -135,18 +134,18 @@ public class TetrisView extends JPanel {
      * Tegner poengsummen på skjermen under spillet.
      *
      * @param g2 Graphics2D-objektet som brukes til å tegne teksten.
-     * Teksten viser gjeldende poengsum hentet fra
-     * viewableTetrisModel.getPointCounter().
+     *           Teksten viser gjeldende poengsum hentet fra
+     *           viewableTetrisModel.getPointCounter().
      */
     private void drawScore(Graphics2D g2) {
         g2.setColor(new Color(150, 111, 51)); // Pastell brun farge
         g2.setFont(new Font("Arial", Font.BOLD, 20));
-    
+
         String scoreText = "SCORE: " + viewableTetrisModel.getPointCounter();
-    
-        int x = 20;  // Venstrejustert
-        int y = 40;  // Øverst
-    
+
+        int x = 20; // Venstrejustert
+        int y = 40; // Øverst
+
         g2.drawString(scoreText, x, y);
     }
 
@@ -154,12 +153,12 @@ public class TetrisView extends JPanel {
      * Formål: Bonus poeng.
      * Tegner en "skygge" av brikken der den vil lande.
      *
-     * @param g2 Grafikkobjektet som tegner skyggen.
+     * @param g2          Grafikkobjektet som tegner skyggen.
      * @param shadowCells Cellene som utgjør skyggebrikken.
-     * @param converter Konverterer celler til piksler.
+     * @param converter   Konverterer celler til piksler.
      */
-    private void drawShadow(Graphics2D g2, Iterable<GridCell> shadowCells, 
-                            CellPositionToPixelConverter converter) {
+    private void drawShadow(Graphics2D g2, Iterable<GridCell> shadowCells,
+            CellPositionToPixelConverter converter) {
         for (GridCell cell : shadowCells) {
             Rectangle2D tile = converter.getBoundsForCell(cell.pos());
 
