@@ -30,6 +30,8 @@ public interface ViewableTetrisModel {
     Iterable<GridCell> getFallingTetrominoCells();
 
 
+ // under er metodene jeg har laget
+
     /**
      * Henter den nåværende Game State.
      * 
@@ -44,5 +46,13 @@ public interface ViewableTetrisModel {
      */
     int getPointCounter ();
 
-    Iterable<GridCell> fallingPiece();
+    //Iterable<GridCell> fallingPiece();
+
+
+    /**
+     * Henter skyggebrikken som viser hvor den nåværende tetrominoen vil lande.
+     *
+     * @return En iterable med GridCell-objektene som utgjør skyggen.
+     */
+    Iterable<GridCell> getShadowTetrominoCells();
 }

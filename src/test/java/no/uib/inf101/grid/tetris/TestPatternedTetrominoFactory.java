@@ -16,7 +16,7 @@ public class TestPatternedTetrominoFactory {
         assertEquals('T', factory.getNext().getSymbol());
         assertEquals('S', factory.getNext().getSymbol());
         assertEquals('Z', factory.getNext().getSymbol());
-        assertEquals('T', factory.getNext().getSymbol()); // Starter på nytt
+        assertEquals('T', factory.getNext().getSymbol());
         assertEquals('S', factory.getNext().getSymbol()); 
     }
 }

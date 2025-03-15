@@ -4,7 +4,6 @@ import no.uib.inf101.grid.GridCell;
 import no.uib.inf101.grid.CellPosition;
 import no.uib.inf101.tetris.model.tetromino.Tetromino;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
@@ -25,36 +24,29 @@ public class TestTetromino {
     }
 
     @Test
-    @DisplayName("Test getSymbol metoden i Tetromino")
     public void testGetSymbol() {
         assertEquals('T', t1.getSymbol(), "Tetromino symbol should be 'T'");
     }
 
     @Test
-    @DisplayName("Test getPosition metoden i Tetromino")
     public void testGetPosition() {
         assertEquals(new CellPosition(0, 0), t1.getPosition(), "Tetromino position should be (0,0)");
     }
 
-    
-
 
     @Test
-    @DisplayName("Test hashCode metode i Tetromino")
     public void testHashcode() {
         assertEquals(t1.hashCode(), t2.hashCode());  // Samme symbol og fasong
         assertNotEquals(t1.hashCode(), t3.hashCode()); // Forskjellig symbol og fasong
     }
 
     @Test
-    @DisplayName("Test equals metode i Tetromino")
     public void testEquals() {
         assertEquals(t1, t2);  // Samme symbol og fasong
         assertNotEquals(t1, t3); // Forskjellig symbol og fasong
     }
 
     @Test 
-    @DisplayName("Test iterator metoden i Tetromino")
     public void testIterator(){
         Iterator<GridCell> iterator=t1.iterator();
         assertTrue(iterator.hasNext());
@@ -66,14 +58,13 @@ public class TestTetromino {
     }
 
     @Test
-    @DisplayName("Test shiftedBy method for Tetromino")
     public void testShiftedBy() {
-        Tetromino shiftedT = t1.shiftedBy(2, 3); // Shift by (2,3)
+        Tetromino shiftedT = t1.shiftedBy(2, 3); // skift med (2,3)
 
-        // Verify that position changed correctly
+        // sjekk om posisjonen endret
         assertEquals(new CellPosition(2, 3), shiftedT.getPosition(), "Tetromino should be shifted correctly");
 
-        // Verify that shape and symbol remain unchanged
+        // sjekk at shape og symbol forblir uendret
         assertEquals(t1.getSymbol(), shiftedT.getSymbol(), "Tetromino symbol should remain the same");
         assertEquals(t1, Tetromino.newTetromino('T'), "Shape should remain unchanged");
     }

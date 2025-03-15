@@ -12,7 +12,8 @@ public class PatternedTetrominoFactory implements TetrominoFactory {
      * Konstruktør for PatternedTetrominoFactory.
      * 
      * @param pattern En streng som representerer sekvensen av Tetromino-symboler (f.eks. "LJSTIO").
-     *                Fabrikken vil syklisk generere Tetrominoer i denne rekkefølgen.
+     * Fabrikken vil generere Tetrominoer i denne rekkefølgen.
+     * 
      * @throws IllegalArgumentException hvis mønsteret er null eller tomt.
      */
     public PatternedTetrominoFactory(String pattern) {

@@ -14,16 +14,9 @@ import no.uib.inf101.grid.GridDimension;
 /** Representerer en Tetromino-brikke i Tetris */
 public class Tetromino implements Iterable<GridCell> {
 
-    /**
-     * Private feltvariabler for en Tetromino
-     * 
-     * @param symbol   Symbolet som represneterer hvilken type.
-     * @param shape    Boolean matrise som definerer formen.
-     * @param position Startposijon på brettet.
-     */
-    private final char symbol;
-    private final boolean[][] shape;
-    private final CellPosition position;
+    private final char symbol; // Symbolet som represneterer hvilken type.
+    private final boolean[][] shape; // Boolean matrise som definerer formen.
+    private final CellPosition position; // Startposijon på brettet.
 
     public Tetromino(char symbol, boolean[][] shape, CellPosition position) {
         this.symbol = symbol;
@@ -32,12 +25,14 @@ public class Tetromino implements Iterable<GridCell> {
     }
 
     /**
-     * Lager en ny Tetromino objekt basert på en gitt symbol/type.
+     * Lager en ny Tetromino objekt basert på en gitt symbol.
      * 
      * @param symbol Er symbolet for Tetromino enten ('L', 'J', 'S', 'Z', 'T', 'I',
      *               'O').
      * @return En ny Tetromino objekt.
-     * @throws IlligalArgumentException Hvis symbolet macther de definert over.
+     * @throws IlligalArgumentException Hvis symbolet ikke macther de definerte over.
+     * 
+     * @return En ny tetromino objekt.
      */
     public static Tetromino newTetromino(char symbol) {
         boolean[][] shape;
@@ -124,6 +119,7 @@ public class Tetromino implements Iterable<GridCell> {
      * 
      * @param deltaRow Antall rader å flytte.
      * @param deltaCol Antall kolonne å flytte.
+     * 
      * @return En ny Tetromino (kopi) med oppdatert posisjon.
      */
     public Tetromino shiftedBy(int deltaRow, int deltaCol) {
@@ -131,9 +127,10 @@ public class Tetromino implements Iterable<GridCell> {
     }
 
     /**
-     * Metoden sentrerer brikken i toppen av et gitt rutenett.
+     * Metoden sentrerer brikken i toppen av brettet.
      * 
      * @param grid Griddimensions objket som representerer brettet.
+     * 
      * @return En ny Teromino som er sentrerer på brettet.
      */
     public Tetromino shiftedToTopCenterOf(GridDimension grid) {
@@ -145,8 +142,11 @@ public class Tetromino implements Iterable<GridCell> {
     /**
      * Retunerer en iterator som iterer over alle cellene i Tetromino brikken.
      * Kun celler som er en del av brikken blir retunert
+     * 
+     * @return Iterasjon over alle cellene.
+     * 
      * Kommenterer her selvom det er en arvet metode,
-     * fordi den har annen implementasjon
+     * fordi den har litt annen implementasjon og for lærings skyld.
      */
     @Override
     public Iterator<GridCell> iterator() {
@@ -165,22 +165,23 @@ public class Tetromino implements Iterable<GridCell> {
     }
 
     /**
-     * Sammenligner denne Tetrominoen med et annet objekt.
+     * Sammenligner denne Tetrominoen med et annen.
      * to Tetrominoer regnes som like hvis de har samme symbol og samme fasong.
      * 
      * @param obj Objketet som skal sammenlignes, den er av typen Objekt.
-     * @return {@code true} hvis objektet er en Teromino med samme symbol/fasong.
+     * 
+     * @return {@code true} hvis objektet er en Teromino med samme symbol, fasong og posisjon.
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
+        if (this == obj) { // Hvis det er nøyaktig samme objektet som this
             return true;
         }
-        if (!(obj instanceof Tetromino other)) {
+        if (!(obj instanceof Tetromino other)) { // Hvis obj ikke er en Tettromino
             return false;
         }
         return this.symbol == other.symbol &&
-                Arrays.deepEquals(this.shape, other.shape) &&
+                Arrays.deepEquals(this.shape, other.shape) && // deepEquals sammenligner flerdimensjonale arrays
                 this.position.equals(other.position); // Sjekk også posisjonen
     }
 
@@ -200,8 +201,9 @@ public class Tetromino implements Iterable<GridCell> {
     /**
      * Lager en rotert kopi av Tetromino.
      * 
-     * @param oldCols Kolonnene i originalfasongen
-     * @param oldRows Radene i orginalfasongen
+     * @param oldCols Kolonnene i originalfasongen.
+     * @param oldRows Radene i orginalfasongen.
+     * 
      * @return Rotert Tretomino med motsatt dimensjoner enn den originale.
      */
     public Tetromino rotateTetromino() {
@@ -216,5 +218,4 @@ public class Tetromino implements Iterable<GridCell> {
         }
         return new Tetromino(symbol, rotatedShape, position);
     }
-
 }

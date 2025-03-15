@@ -11,6 +11,8 @@ import no.uib.inf101.tetris.model.tetromino.TetrominoFactory;
 import no.uib.inf101.tetris.model.tetromino.RandomTetrominoFactory;
 import no.uib.inf101.tetris.controller.TetrisController;
 
+//AA
+
 public class Main {
 	
 	public static final String WINDOW_TITLE = "INF101 TETRIS";
@@ -18,7 +20,7 @@ public class Main {
     public static void main(String[] args) {
         TetrominoFactory factory = new RandomTetrominoFactory(); //Opprett en TetrominoFactory
         TetrisModel model = new TetrisModel(factory); //Send factory til TetrisModel
-        TetrisView view = new TetrisView(model);
+        TetrisView view = new TetrisView(model); 
         
 
         // Opprett en TetrisController og koble det til modellen og visningen

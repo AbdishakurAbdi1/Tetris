@@ -25,24 +25,40 @@ public class TetrisController implements KeyListener {
     private final Timer timer;
     private final TetrisSong song;
 
+
+    /**
+     * Oppretter en TetrisController som styrer spillet og håndterer brukerinput.
+     * 
+     * @param model Spillmodellen som håndterer logikken.
+     * @param view Visningen som tegner spillet.
+     */
     public TetrisController(ControllableTetrisModel model, TetrisView view) {
         this.model = model;
         this.view = view;
         this.gameState = this.model.getGameState();
 
-        // Initialiser timer
+        // Initialiserer timer
         this.timer = new Timer(model.getTimerDelay(), this::clockTick);
 
+        // Initialiserer song
         this.song = new TetrisSong();
 
         // Registrer denne kontrolleren som KeyListener for view
         view.addKeyListener(this);
         view.setFocusable(true);
 
+        //Starter timer og song
         timer.start();
         song.run();
     }
 
+    /**
+     * Håndterer tastetrykk i Tetris-spillet.
+     * Håndterer også rotering eller slipping av Tetromino brikken. Den ignorerer 
+     * input hvis spillet er over.
+     * 
+     * @param e KeyEvent-objektet som inneholder informasjon om tastetrykket.
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         System.out.println(gameState);
@@ -58,13 +74,13 @@ public class TetrisController implements KeyListener {
         lastMoveTime = now;
         boolean moved = false; // sjekker om brikken faktisk beveger seg.
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            // Venstre pil - flytter brikken én kolonne til venstre
+            // Venstre pil - flytter brikken en kolonne til venstre
             moved = this.model.moveTetromino(0, -1);
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            // Høyre pil - flytter brikken én kolonne til høyre
+            // Høyre pil - flytter brikken en kolonne til høyre
             moved = this.model.moveTetromino(0, 1);
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            // Ned pil - flytter brikken én rad ned
+            // Ned pil - flytter brikken en rad ned
             moved = this.model.moveTetromino(1, 0);
             if (moved) {
                 timer.restart(); // Start timeren på nytt kun hvis brikken flyttet seg
@@ -76,8 +92,7 @@ public class TetrisController implements KeyListener {
             this.model.dropTetromino(); // Dropper brikken til bunnen
             timer.restart(); // Start timeren på nytt etter drop
         }
-        // System.out.println("Repainting view!");
-        view.repaint(); // Oppdater GUI
+        view.repaint(); // Oppdaterer GUI
     }
 
     @Override

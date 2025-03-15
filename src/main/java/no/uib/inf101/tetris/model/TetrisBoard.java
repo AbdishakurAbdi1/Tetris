@@ -7,9 +7,7 @@ import no.uib.inf101.grid.GridDimension;
 
 /**
  * Representerer brettet i Tetris-spillet.
- * Denne klassen håndterer hvordan celler legges til og fjernes,
- * for eksempel når en rad fylles opp og forsvinner.
- * Arver fra 'Grid'.
+ * Denne klassen håndterer hvordan celler legges til og fjernes.
  */
 public class TetrisBoard extends Grid {
     /**
@@ -20,19 +18,17 @@ public class TetrisBoard extends Grid {
      * @param super for å arve konskuktøren i Grid som den er definert.
      */
     public TetrisBoard(int rows, int cols) {
-        super(rows, cols, '-'); // standard tom celle begynner med "-"
+        super(rows, cols, '-'); // standard tom celle er definert som "-".
     }
 
     /**
-     * A string representation of the board in a readable format.
-     * For testing purposes.
+     * En strengrepresentasjon av brettet i et lesbart format.
+     * Brukes for testing.
      *
-     * @return a string representation of the board
-     *         StringBuilder kommer fra Java’s standardbibliotek,
-     *         den gjør string mutable
+     * @return en strengrepresentasjon av brettet
      */
     public String prettyString() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder(); //StringBuilder gjør string mutable.
         for (int row = 0; row < rows(); row++) {
             for (int col = 0; col < cols(); col++) {
                 sb.append(get(new CellPosition(row, col))); // get henter riktig char for hvert celle
@@ -45,8 +41,12 @@ public class TetrisBoard extends Grid {
                               // det
     }
 
+    
+    /**
+     * @return denne instansen siden den implementerer GridDimension.
+     */
     public GridDimension getDimension() {
-        return this; // Returnerer seg selv fordi det implementerer GridDimension
+        return this;
     }
 
     @Override
@@ -56,9 +56,9 @@ public class TetrisBoard extends Grid {
     }
 
     /**
-     * Fjerner alle fulle rader og forskyver radene over nedover.
+     * Fjerner alle fulle rader.
      * 
-     * @return Antall rader som ble fjernet.
+     * @return variabelen som holder antall rader som ble fjernet.
      */
     public int clearFilledRows() {
         int removedRows = 0;

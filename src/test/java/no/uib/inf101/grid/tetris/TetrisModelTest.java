@@ -108,54 +108,6 @@ public class TetrisModelTest {
         }
     }
 
-    // @Test
-    // void testDropTetrominoFallsAndLocks() {
-    //     Tetromino initialTetromino = model.getFallingTetromino();
-        
-    //     model.dropTetromino(); // Brikken skal falle rett ned og låses fast
-    
-    //     System.out.println("Brett etter dropping:\n" + model.getBoard().prettyString()); // Skriv ut brettet
-    
-    //     // Sjekk at den gamle brikken er låst fast på brettet
-    //     for (GridCell cell : initialTetromino) {
-    //         System.out.println("Sjekker celle: " + cell.pos() + " forventet: " + cell.symbol() + 
-    //                            " faktisk: " + model.getBoard().get(cell.pos()));
-    //         assertEquals(cell.symbol(), model.getBoard().get(cell.pos()), 
-    //             "Brikken burde være låst fast på brettet etter dropp.");
-    //     }
-    // }
-
-    // @Test
-    // void testGameOverTriggersCorrectly() {
-    //     for (int col = 0; col < model.getBoard().cols(); col++) {
-    //         model.getBoard().set(new CellPosition(0, col), 'X');
-    //     }
-    //     model.dropTetromino();
-    //     assertEquals(GameState.GAME_OVER, model.getGameState(), "Spillet burde være i GAME_OVER-tilstand.");
-    //     assertNull(model.getFallingTetromino(), "Ingen ny brikke etter Game Over.");
-    // }
-
-    // @Test
-    // void testCannotMoveAfterGameOver() {
-    //     for (int col = 0; col < model.getBoard().cols(); col++) {
-    //         model.getBoard().set(new CellPosition(0, col), 'X'); // Fyller øverste rad
-    //     }
-    
-    //     model.dropTetromino();
-    
-    //     assertEquals(GameState.GAME_OVER, model.getGameState(), 
-    //         "Spillet burde være i GAME_OVER-tilstand.");
-    
-    //     // Sjekk at det ikke er noen ny fallende brikke
-    //     assertNull(model.getFallingTetromino(), 
-    //         "Det burde ikke være en ny fallende brikke etter Game Over.");
-    
-    //     // Forsøk å flytte kun hvis en brikke faktisk eksisterer
-    //     if (model.getFallingTetromino() != null) {
-    //         assertFalse(model.moveTetromino(1, 0), 
-    //             "Ingen bevegelse skal være mulig etter Game Over.");
-    //     }
-    // }
 
 
     @Test

@@ -22,7 +22,7 @@ public class TestRandomTetrominoFactory{
     void testGetNextReturnsValidTetromino() {
         Set<Character> validSymbols = Set.of('L', 'J', 'S', 'Z', 'T', 'I', 'O');
 
-        for (int i = 0; i < 100; i++) { // Tester flere ganger for tilfeldighet
+        for (int i = 0; i < 100; i++) { // Tester flere ganger
             Tetromino tetromino = factory.getNext();
             assertNotNull(tetromino, "getNext() should never return null");
             assertTrue(validSymbols.contains(tetromino.getSymbol()),
