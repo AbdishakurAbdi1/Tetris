@@ -1,8 +1,7 @@
-package no.uib.inf101.grid.tetris;
+package no.uib.inf101.tetris.model.tetromino;
 
 import no.uib.inf101.grid.GridCell;
 import no.uib.inf101.grid.CellPosition;
-import no.uib.inf101.tetris.model.tetromino.Tetromino;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

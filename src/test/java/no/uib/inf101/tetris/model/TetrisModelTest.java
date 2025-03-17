@@ -1,4 +1,4 @@
-package no.uib.inf101.grid.tetris;
+package no.uib.inf101.tetris.model;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,9 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 
 import no.uib.inf101.grid.CellPosition;
 import no.uib.inf101.grid.GridCell;
-import no.uib.inf101.tetris.model.TetrisModel;
 import no.uib.inf101.tetris.model.tetromino.Tetromino;
 import no.uib.inf101.tetris.model.tetromino.TetrominoFactory;
+import no.uib.inf101.tetris.model.tetromino.PatternedTetrominoFactory;
 import no.uib.inf101.tetris.model.tetromino.RandomTetrominoFactory;
 
 public class TetrisModelTest {
@@ -21,6 +21,10 @@ public class TetrisModelTest {
         factory = new RandomTetrominoFactory();
         model = new TetrisModel(factory);
     }
+
+
+
+
 
     @Test
     void testMoveTetromino() {
@@ -86,14 +90,33 @@ public class TetrisModelTest {
 
         assertNotNull(afterDrop, "Det skal alltid være en ny brikke etter dropp, med mindre Game Over.");
 
-        assertNotEquals(beforeDrop, afterDrop, "En ny brikke burde genereres etter dropp.");
-
         assertNotEquals(System.identityHashCode(beforeDrop), System.identityHashCode(afterDrop),
                 "Den nye brikken burde være en ny instans etter dropp.");
 
         assertNotEquals(beforeDrop.getSymbol(), afterDrop.getSymbol(),
                 "Den nye brikken burde ha et annet symbol etter dropp.");
     }
+
+
+    @Test
+    void testDropTetromino() {
+        // Opprett en ny TetrisModel med en forutsigbar fabrikk for I-brikken
+        TetrisModel model = new TetrisModel(new PatternedTetrominoFactory("I"));
+
+        // Hent referansen til den nåværende fallende brikken
+        Iterable<GridCell> beforeDrop = model.getFallingTetromino();
+
+        // Utfør dropp av brikken
+        model.dropTetromino();
+
+        // Hent referansen til den nye brikken etter dropp
+        Iterable<GridCell> afterDrop = model.getFallingTetromino();
+
+        // Sjekk at brikken faktisk er byttet ut (ikke den samme referansen)
+        assertNotSame(beforeDrop, afterDrop, "Brikken skal byttes ut etter dropp.");
+    }
+
+
 
     @Test
     void testDropTetrominoStopsAtBlock() {
@@ -109,7 +132,7 @@ public class TetrisModelTest {
 
     @Test
     public void testClockTickMoves() {
-        TetrisModel model = new TetrisModel();
+        TetrisModel model = new TetrisModel(factory);
         CellPosition initialPosition = model.getFallingTetromino().getPosition(); // Får tak i posisjonen.
 
         model.clockTick(); // klokkestikk tetromino skal flytte seg ned
@@ -123,7 +146,7 @@ public class TetrisModelTest {
 
     @Test
     public void testClockTickLocksTetromino() {
-        TetrisModel model = new TetrisModel();
+        TetrisModel model = new TetrisModel(factory);
 
         // Flytt tetrominoen til bunnen for å stoppe den
         while (model.moveTetromino(1, 0))

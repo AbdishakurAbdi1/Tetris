@@ -1,7 +1,6 @@
-package no.uib.inf101.grid.tetris;
+package no.uib.inf101.tetris.model.tetromino;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import no.uib.inf101.tetris.model.tetromino.PatternedTetrominoFactory;
 
 import org.junit.jupiter.api.Test;
 

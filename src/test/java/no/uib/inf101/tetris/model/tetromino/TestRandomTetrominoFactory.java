@@ -1,12 +1,8 @@
-package no.uib.inf101.grid.tetris;
-
-import no.uib.inf101.tetris.model.tetromino.RandomTetrominoFactory;
-import no.uib.inf101.tetris.model.tetromino.TetrominoFactory;
+package no.uib.inf101.tetris.model.tetromino;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
-import no.uib.inf101.tetris.model.tetromino.*;
 
 import java.util.Set;
 

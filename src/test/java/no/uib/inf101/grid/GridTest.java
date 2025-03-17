@@ -1,4 +1,4 @@
-package no.uib.inf101.grid.grid;
+package no.uib.inf101.grid;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -9,11 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-
-import no.uib.inf101.grid.CellPosition;
-import no.uib.inf101.grid.Grid;
-import no.uib.inf101.grid.GridCell;
-import no.uib.inf101.grid.IGrid;
 
 /**
  * Testing the class Grid

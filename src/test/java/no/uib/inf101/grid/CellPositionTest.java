@@ -1,4 +1,4 @@
-package no.uib.inf101.grid.grid;
+package no.uib.inf101.grid;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -7,8 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
-
-import no.uib.inf101.grid.CellPosition;
 
 /**
  * Testing the class CellPosition

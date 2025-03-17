@@ -24,8 +24,7 @@ public class Main {
 
         // Opprett en TetrisController og koble det til modellen og visningen
         new TetrisController(model, view);
-        // view.addKeyListener(controller); //Tastetrykket
-        // view.setFocusable(true); //For at tasteturkontroller funkr
+      
         view.requestFocusInWindow(); // Sørger for at vinduet fanger opp tatstetrykk
 
         JFrame frame = new JFrame(WINDOW_TITLE);
@@ -38,5 +37,4 @@ public class Main {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setLocation(dim.width / 2 - frame.getSize().width / 2, dim.height / 2 - frame.getSize().height / 2);
     }
-
 }

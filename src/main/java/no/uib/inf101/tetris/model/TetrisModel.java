@@ -5,12 +5,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import no.uib.inf101.grid.CellPosition;
+
 import no.uib.inf101.grid.GridCell;
 import no.uib.inf101.grid.GridDimension;
 import no.uib.inf101.tetris.view.ViewableTetrisModel;
 import no.uib.inf101.tetris.controller.ControllableTetrisModel;
-import no.uib.inf101.tetris.model.tetromino.RandomTetrominoFactory;
 import no.uib.inf101.tetris.model.tetromino.Tetromino;
 import no.uib.inf101.tetris.model.tetromino.TetrominoFactory;
 
@@ -20,20 +19,12 @@ import no.uib.inf101.tetris.model.tetromino.TetrominoFactory;
  */
 public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel {
     /* Feltvariabel som representerer brettet */
-    private TetrisBoard board;
-    private TetrominoFactory tetrominoFactory; // Legg til en fabrikk for å generere Tetrominoer
+    private final TetrisBoard board;
+    private final TetrominoFactory tetrominoFactory; // Legg til en fabrikk for å generere Tetrominoer
     private Tetromino fallingTetromino; // Legg til en variabel for den fallende Tetrominoen
     private GameState gameState; // en instans av game state.
     private int pointCounter = 0; // En variabel som skal holde antall poeng som er samlet
 
-    public TetrisModel() {
-        /** Oppretter et nytt Tetris-spill med et brett på 15x10 */
-        this.board = new TetrisBoard(15, 10);
-        this.tetrominoFactory = new RandomTetrominoFactory();
-        this.fallingTetromino = tetrominoFactory.getNext().shiftedToTopCenterOf(board.getDimension()); // Initialiser
-                                                                                                       // Tetromino
-        // this.gameState = GameState.ACTIVE_GAME; // Starter med ACTIVE_GAME
-    };
 
     /**
      * Oppretter et nytt Tetris-spill med et brett på 15x10 og en gitt
@@ -102,6 +93,7 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
         return fallingTetromino;
     }
 
+    @Override
     public Iterable<GridCell> getFallingTetrominoCells() {
         if (fallingTetromino == null) {
             return Collections.emptyList(); // Returnerer en tom liste hvis ingen brikke faller
@@ -116,10 +108,6 @@ public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel
 
     }
 
-    // @Override
-    // public Iterable<GridCell> fallingPiece() {
-    // return fallingTetromino;
-    // }
 
     /**
      * Returnerer Tetris-brettet til spillet.

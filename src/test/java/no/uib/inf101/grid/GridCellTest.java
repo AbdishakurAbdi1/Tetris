@@ -1,9 +1,6 @@
-package no.uib.inf101.grid.grid;
+package no.uib.inf101.grid;
 
 import org.junit.jupiter.api.Test;
-
-import no.uib.inf101.grid.CellPosition;
-import no.uib.inf101.grid.GridCell;
 
 import java.util.Objects;
 
