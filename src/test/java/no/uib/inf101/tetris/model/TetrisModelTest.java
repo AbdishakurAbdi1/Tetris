@@ -23,9 +23,6 @@ public class TetrisModelTest {
     }
 
 
-
-
-
     @Test
     void testMoveTetromino() {
         assertTrue(model.moveTetromino(1, 0), "Brikken burde kunne flyttes én rad ned.");

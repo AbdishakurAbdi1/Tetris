@@ -18,6 +18,13 @@ public class Tetromino implements Iterable<GridCell> {
     private final boolean[][] shape; // Boolean matrise som definerer formen.
     private final CellPosition position; // Startposijon på brettet.
 
+    /**
+     * Oppretter en ny Tetromino-brikke med spesifisert symbol, form og startposisjon.
+     *
+     * @param symbol    Symbole som representerer Tetrominoen.
+     * @param shape     Representerer Tetrominoens fasong.
+     * @param position  Startposisjonen til Tetrominoen på spillbrettet.
+     */
     public Tetromino(char symbol, boolean[][] shape, CellPosition position) {
         this.symbol = symbol;
         this.shape = shape;

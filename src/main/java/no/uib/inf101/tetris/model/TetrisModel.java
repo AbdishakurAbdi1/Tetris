@@ -19,10 +19,10 @@ import no.uib.inf101.tetris.model.tetromino.TetrominoFactory;
  */
 public class TetrisModel implements ViewableTetrisModel, ControllableTetrisModel {
     /* Feltvariabel som representerer brettet */
-    private final TetrisBoard board;
-    private final TetrominoFactory tetrominoFactory; // Legg til en fabrikk for å generere Tetrominoer
-    private Tetromino fallingTetromino; // Legg til en variabel for den fallende Tetrominoen
-    private GameState gameState; // en instans av game state.
+    private final TetrisBoard board; // Representerer brettet.
+    private final TetrominoFactory tetrominoFactory; // Representerer en fabrikk for å generere Tetrominoer.
+    private Tetromino fallingTetromino; // Representerer en variabel for den fallende Tetrominoen
+    private GameState gameState; // Represnterer en instans av game state.
     private int pointCounter = 0; // En variabel som skal holde antall poeng som er samlet
 
 

@@ -17,14 +17,19 @@ import java.awt.Font;
 
 public class TetrisView extends JPanel {
 
-    public static final int OUTERMARGIN = 15;
-    public static final int CELLMARGIN = 2;
-    public static final int PREFERREDSIDESIZE = 40;
-    public Color color;
+    public static final int OUTERMARGIN = 15; // Ytre marg rundt spillbrettet
+    public static final int CELLMARGIN = 2; // Avstand mellom celler i rutenettet
+    public static final int PREFERREDSIDESIZE = 40; // Foretrukket størrelse på celler
+    public Color color; // Fargen som brukes til tegning av brikker
 
-    private ViewableTetrisModel viewableTetrisModel;
-    private ColorTheme colorTheme;
+    private ViewableTetrisModel viewableTetrisModel; // Modellen
+    private ColorTheme colorTheme; // Fargetema for spillvisningen
 
+    /**
+     * Oppretter en ny visning for Tetris-spillet.
+     *
+     * @param viewableTetrisModel Modellen som inneholder informasjon om spilltilstanden.
+     */
     public TetrisView(ViewableTetrisModel viewableTetrisModel) {
         this.viewableTetrisModel = viewableTetrisModel;
 

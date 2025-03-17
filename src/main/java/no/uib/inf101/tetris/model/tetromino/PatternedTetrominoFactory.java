@@ -6,8 +6,8 @@ package no.uib.inf101.tetris.model.tetromino;
  * slutten.
  */
 public class PatternedTetrominoFactory implements TetrominoFactory {
-    private String pattern;
-    private int currentPosition;
+    private String pattern; // Representerer mønsteret
+    private int currentPosition; // Nåværende posisjon
 
     /**
      * Konstruktør for PatternedTetrominoFactory.

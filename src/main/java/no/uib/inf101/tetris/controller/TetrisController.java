@@ -17,12 +17,12 @@ import no.uib.inf101.tetris.model.GameState;
  * Kontrollerklasse som håndterer tastetrykk for å flytte tetrominoen.
  */
 public class TetrisController implements KeyListener {
-    private final ControllableTetrisModel model;
-    private final TetrisView view;
-    private long lastMoveTime = 0;
-    private GameState gameState;
-    private final Timer timer;
-    private final TetrisSong song;
+    private final ControllableTetrisModel model; // Modellen som styrer spillets logikk og håndterer spilltilstanden
+    private final TetrisView view; // Brukergrensesnittet for spillet, ansvarlig for å vise spillets tilstand
+    private long lastMoveTime = 0; // Holder styr på tidspunktet for siste bevegelse av en Tetris-brikke
+    private GameState gameState; // Representerer nåværende tilstand 
+    private final Timer timer; // Timer som styrer automatisk fall av brikker og andre tidsbaserte hendelser
+    private final TetrisSong song; // Håndterer bakgrunnsmusikken for spillet
 
     /**
      * Oppretter en TetrisController som styrer spillet og håndterer brukerinput.

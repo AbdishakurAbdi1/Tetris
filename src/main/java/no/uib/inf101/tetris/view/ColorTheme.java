@@ -32,10 +32,20 @@ public class ColorTheme {
         }
     }
 
+    /**
+     * Henter fargen for Framen.
+     * 
+     * @return Fargen hvit.
+     */
     public Color getFrameColor() {
         return Color.WHITE;
     }
 
+    /**
+     * Henter fargen for bakgrunnsfargen.
+     * 
+     * @return En pastel beige farge.
+     */
     public Color getBackgroundColor() {
         return new Color(0, 0, 0, 128);
     }
