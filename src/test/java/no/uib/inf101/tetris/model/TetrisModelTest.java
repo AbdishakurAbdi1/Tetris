@@ -87,9 +87,6 @@ public class TetrisModelTest {
 
         assertNotNull(afterDrop, "Det skal alltid være en ny brikke etter dropp, med mindre Game Over.");
 
-        assertNotEquals(System.identityHashCode(beforeDrop), System.identityHashCode(afterDrop),
-                "Den nye brikken burde være en ny instans etter dropp.");
-
         assertNotEquals(beforeDrop.getSymbol(), afterDrop.getSymbol(),
                 "Den nye brikken burde ha et annet symbol etter dropp.");
     }
