@@ -14,7 +14,7 @@
     <properties>
         <!-- General project properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>17</java.version>
+        <java.version>25</java.version>
 
         <!-- Properties required for packaging application as JAR and installer -->
         <app.main.class>${groupId}.TetrisMain</app.main.class> <!-- name of main class -->
